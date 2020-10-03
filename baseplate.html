@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/css/uikit.min.css">
+    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+    <title>Document</title>
+</head>
+<body>
+    <!-- HEADER  WITH NAVBAR AND SLIDE SHOW -->
+<div class="uk-position-relative">
+    <div class="uk-position-relative uk-visible-toggle uk-light" tabindex="-1" uk-slideshow="animation: fade; autoplay: true">
+  
+      <ul class="uk-slideshow-items">
+        <li>
+          <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+            <img src="http://maksim.be/codepen/img-1.jpg" alt="" uk-cover>
+          </div>
+          <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
+          <div class="uk-position-center uk-position-medium uk-text-center">
+            <div uk-slideshow-parallax="scale: 1,1,0.8">
+              <h2 uk-slideshow-parallax="x: 200,0,0">Heading</h2>
+              <p uk-slideshow-parallax="x: 400,0,0;">Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+            <img src="http://maksim.be/codepen/img-2.jpg" alt="" uk-cover>
+          </div>
+          <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
+          <div class="uk-position-center uk-position-medium uk-text-center">
+            <div uk-slideshow-parallax="scale: 1,1,0.8">
+              <h2 uk-slideshow-parallax="x: 200,0,0">Heading</h2>
+              <p uk-slideshow-parallax="x: 400,0,0;">Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="uk-position-cover" uk-slideshow-parallax="scale: 1.2,1.2,1">
+            <img src="http://maksim.be/codepen/img-3.jpg" alt="" uk-cover>
+          </div>
+          <div class="uk-position-cover" uk-slideshow-parallax="opacity: 0,0,0.2; backgroundColor: #000,#000"></div>
+          <div class="uk-position-center uk-position-medium uk-text-center">
+            <div uk-slideshow-parallax="scale: 1,1,0.8">
+              <h2 uk-slideshow-parallax="x: 200,0,0">Heading</h2>
+              <p uk-slideshow-parallax="x: 400,0,0;">Lorem ipsum dolor sit amet.</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+  
+      <a class="uk-position-center-left uk-position-small uk-hidden-hover" href="#" uk-slidenav-previous uk-slideshow-item="previous"></a>
+      <a class="uk-position-center-right uk-position-small uk-hidden-hover" href="#" uk-slidenav-next uk-slideshow-item="next"></a>
+  
+    </div>
+    <div class="uk-position-top">
+      <div uk-sticky="animation: uk-animation-slide-top; sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky; cls-inactive: uk-navbar-transparent uk-light; top: 100">
+  
+        <!-- Desktop Navbar -->
+        <nav class="uk-navbar-container uk-navbar-transparent">
+          <div class="uk-container uk-container-expand">
+            <div uk-navbar>
+              <div class="uk-navbar-left">
+                <a class="uk-navbar-item uk-logo" href="#">LOGO</a>
+                <ul class="uk-navbar-nav">
+                  <li class="uk-active"><a href="#">Home</a></li>
+                  <li><a href="#">About</a></li>
+                  <li><a href="#">Services</a></li>
+                </ul>
+              </div>
+              <div class="uk-navbar-right">
+                <ul class="uk-navbar-nav">
+                  <li><a class="uk-navbar-toggle" href="#modal-full" uk-search-icon uk-toggle></a></li>
+                  <li><a href="#"><i class="mdi mdi-login mdi-20px uk-margin-small-right"></i>Login</a></li>
+                  <li><a href="#!" style="cursor: default">|</a></li>
+                  <li><a href="#"><i class="mdi mdi-account-plus-outline mdi-20px uk-margin-small-right"></i>Register</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </nav>
+        <!-- Desktop Navbar -->
+  
+        <!-- Mobile Navbar -->
+  
+        <!-- Mobile Navbar -->
+  
+        <!-- Search Modal -->
+        <div id="modal-full" class="uk-modal-full uk-modal" uk-modal>
+          <div class="uk-modal-dialog uk-flex uk-flex-center uk-flex-middle" uk-height-viewport>
+            <button class="uk-modal-close-full" type="button" uk-close></button>
+            <form class="uk-search uk-search-large">
+              <input class="uk-search-input uk-text-center" type="search" placeholder="Search..." autofocus>
+            </form>
+          </div>
+        </div>
+        <!-- Search Modal -->
+      </div>
+    </div>
+  </div>
+  
+  <main uk-height-viewport="expand: true">
+    <div class="uk-container uk-margin-top uk-margin-large-bottom">
+      <h3 class="uk-text-bold">Transparent header with navbar and slideshow with parallex effect</h3>
+       <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Omnis nam quibusdam similique dignissimos commodi voluptate accusamus nesciunt impedit rerum ad est excepturi nostrum a officiis error, eius consequatur quaerat aliquam debitis officia atque repellendus? In aspernatur nulla, suscipit asperiores at adipisci provident architecto consectetur quae recusandae harum repellendus illo incidunt sint velit iste vel. Praesentium, vitae labore saepe veniam at eligendi perferendis sapiente! Velit laboriosam unde dignissimos fugit nesciunt illo omnis qui, hic nulla nobis quis iure ad sed itaque repudiandae autem quod dolores eum fugiat aliquid consectetur impedit labore! Deleniti omnis quis cum nulla nostrum? Velit, praesentium. Quaerat, deleniti!</p>
+    </div>
+  </main>
+  
+  <!-- FOOTER || ALWAYS STICKS TO BOTTOM ;-)  -->
+  <footer>
+    <div class="uk-section uk-section-xsmall uk-margin-small-top uk-section-muted">
+      <div class="uk-container uk-container-expand">
+        <div class="uk-grid uk-child-width-1-2@s uk-text-center uk-text-left@s" data-uk-grid>
+          <div class="uk-text-small uk-text-muted">
+            &copy; 2020 Your Company | All rights reserved.
+          </div>
+          <div class="uk-text-small uk-text-muted uk-text-center uk-text-right@s">
+            <span>Designed & Developed with <i class="mdi mdi-heart" style="color: palevioletred"></i> By </span> | <a href="https://codepen.io/kent_iyo/pen/GRJJjKZ" class="uk-text-muted" title="A pen by Kent" target="_blank" data-uk-tooltip>Kent</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+  
+  
+  
+  
+  
+    
+    
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/uikit@3.3.1/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
