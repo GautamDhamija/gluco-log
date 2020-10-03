@@ -1,7 +1,7 @@
 # Gluco-Log
 ## Configuring Firebase Firestore
-create a file at src/firebase/init.js
-enter your keys you get from firebase
+create a file at src/firebase/init.js .
+Enter your keys you get from firebase
 
 ```
 import firebase from "firebase/app";
