@@ -3,4 +3,4 @@ node_modules/
 npm-debug.log
 .idea/
 dist/
-/src/firebase
+/src/firebase/init.js
