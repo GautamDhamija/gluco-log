@@ -63,7 +63,7 @@
 
         <div class="col-sm d-flex justify-content-center">
         <router-link :to="{name:'calculator'}">
-        <base-button class="" type="warning" @click="$notify({verticalAlign: 'bottom',type: 'success', message: 'Success Notification'})">Bolus Calculator</base-button>
+        <base-button class="" type="warning">Bolus Calculator</base-button>
         </router-link>
         </div>
 

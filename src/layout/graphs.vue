@@ -12,7 +12,8 @@
                 <h2 class="card-title">{{$t('Insulin Taken')}}</h2>
               </div>
               <div class="col-sm-6">
-                <div class="btn-group btn-group-toggle"
+                <div class="row">
+                <div class="btn-group btn-group-toggle col-sm"
                      :class="isRTL ? 'float-left' : 'float-right'"
                      data-toggle="buttons">
                   <label v-for="(option, index) in bigLineChartCategories"
@@ -28,6 +29,7 @@
                     {{option}}
                   </label>
                 </div>
+              </div>
               </div>
             </div>
           </template>
@@ -47,6 +49,25 @@
 
 
     </div>
+
+      <!-- //second graph -->
+      <div class="col-12" :class="{'text-right': isRTL}">
+        <card type="chart">
+          <template slot="header">
+            <h5 class="card-category">{{$t('As logged')}}</h5>
+            <h3 class="card-title">Last Blood Sugar Levels </h3>
+          </template>
+          <div class="chart-area">
+            <line-chart style="height: 100%"
+                        chart-id="purple-line-chart"
+                        :chart-data="purpleLineChart.chartData"
+                        :gradient-colors="purpleLineChart.gradientColors"
+                        :gradient-stops="purpleLineChart.gradientStops"
+                        :extra-options="purpleLineChart.extraOptions">
+            </line-chart>
+          </div>
+        </card>
+      </div>
 
 
   </div>
@@ -99,6 +120,35 @@ export default {
           categories: []
         },
 
+        //for second graph
+        purpleLineChart: {
+          extraOptions: chartConfigs.purpleChartOptions,
+          chartData: {
+            // labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV','DEC','hello'],
+            labels:[],
+            datasets: [{
+              label: "Data",
+              fill: true,
+              borderColor: config.colors.primary,
+              borderWidth: 2,
+              borderDash: [],
+              borderDashOffset: 0.0,
+              pointBackgroundColor: config.colors.primary,
+              pointBorderColor: 'rgba(255,255,255,0)',
+              pointHoverBackgroundColor: config.colors.primary,
+              pointBorderWidth: 20,
+              pointHoverRadius: 4,
+              pointHoverBorderWidth: 15,
+              pointRadius: 4,
+              // data: [80, 100, 70, 80, 120, 80,120,130],
+              data:[]
+            }]
+          },
+          gradientColors: config.colors.primaryGradient,
+          gradientStops: [1, 0.2, 0],
+        },
+
+
       } 
     },
     created(){
@@ -119,7 +169,25 @@ export default {
           notes:data.notes,
 
        })
+
       })
+
+      const showDataFor=()=>{
+        if(this.$records.length>15)
+        return 15
+        else
+        return this.$records.length
+      }
+      console.log(showDataFor())
+      for(let i=0;i<showDataFor();i++){
+        // console.log(this.$records[i].category.toString())
+        // console.log(this.$records[i].bloodGlucoseLevel)
+        this.purpleLineChart.chartData.labels.push(this.$records[i].category.toString())
+        this.purpleLineChart.chartData.datasets[0].data.push(this.$records[i].bloodGlucoseLevel)
+
+      }
+
+      
     },
     computed:{
         enableRTL() {
