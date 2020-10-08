@@ -48,17 +48,42 @@
 
 
 
-    </div>
+
 
       <!-- //second graph -->
+      <!-- last blood sugar levels chart -->
+      <div class='abcd'>
+      <base-dropdown menu-classes="dropdown-black"
+                title-classes="btn btn-secondary"
+                title="View For"
+                class=""
+                >
+                  <a class="dropdown-item" @click="orginalGraph()">Last 15 Logged</a>
+                  <div class="dropdown-divider"></div>
+                  <h6 class="dropdown-header">View Values For</h6>
+                  
+                  <a class="dropdown-item" v-for ="(items,index) in dropdownItems" :key="index" @click="viewFor(items)" >{{items}}</a>
+              </base-dropdown>
+      </div>
+      
       <div class="col-12" :class="{'text-right': isRTL}">
         <card type="chart">
           <template slot="header">
-            <h5 class="card-category">{{$t('As logged')}}</h5>
-            <h3 class="card-title">Last Blood Sugar Levels </h3>
+            <div class="row">
+            <div class="col-sm-6">
+            <h5 class="card-category">{{chartFor}}</h5>
+            <h3 class="card-title">Blood Sugar Levels </h3>
+            </div>
+            <div class="col-sm-6">
+               
+
+
+            </div>
+            </div>
           </template>
           <div class="chart-area">
             <line-chart style="height: 100%"
+                        ref="sChart"
                         chart-id="purple-line-chart"
                         :chart-data="purpleLineChart.chartData"
                         :gradient-colors="purpleLineChart.gradientColors"
@@ -71,11 +96,11 @@
 
 
   </div>
+</div>
 </template>
 
 <script>
     import LineChart from '@/components/Charts/LineChart';
-  // import BarChart from '@/components/Charts/BarChart';
     import * as chartConfigs from '@/components/Charts/config';
     import config from '@/config';
     import {db,auth} from '@/firebase/init'
@@ -84,11 +109,7 @@
 export default {
     components: {
       LineChart,
-      // BarChart,
 
-    },
-    beforeCreate(){
-    console.log(this.$records)
     },
     data() {
       return {
@@ -124,7 +145,6 @@ export default {
         purpleLineChart: {
           extraOptions: chartConfigs.purpleChartOptions,
           chartData: {
-            // labels: ['JUL', 'AUG', 'SEP', 'OCT', 'NOV','DEC','hello'],
             labels:[],
             datasets: [{
               label: "Data",
@@ -140,19 +160,19 @@ export default {
               pointHoverRadius: 4,
               pointHoverBorderWidth: 15,
               pointRadius: 4,
-              // data: [80, 100, 70, 80, 120, 80,120,130],
               data:[]
             }]
           },
           gradientColors: config.colors.primaryGradient,
           gradientStops: [1, 0.2, 0],
         },
+        dropdownItems:['Fasting Glucose','Snack','Before Breakfast','Breakfast','After Breakfast','Before Lunch','Lunch','After Lunch','Before Dinner','Dinner','After Dinner','Before Bed','Night','Before Excercise','After Excercise'],
+        chartFor:"For Last 15 Logged"
 
 
       } 
     },
     created(){
-        // this.$records.forEach
     this.$records.forEach((data)=>{
        this.records.push({
           fullDate:data.date,
@@ -180,8 +200,6 @@ export default {
       }
       console.log(showDataFor())
       for(let i=0;i<showDataFor();i++){
-        // console.log(this.$records[i].category.toString())
-        // console.log(this.$records[i].bloodGlucoseLevel)
         this.purpleLineChart.chartData.labels.push(this.$records[i].category.toString())
         this.purpleLineChart.chartData.datasets[0].data.push(this.$records[i].bloodGlucoseLevel)
 
@@ -197,17 +215,14 @@ export default {
         return this.$rtl.isRTL;
       },
         bigLineChartCategories() {
-        // return this.$t('dashboard.chartCategories');
         let d=new Date()
         let monthArray=["JAN",'FEB','MAR','APRIL','MAY','JUN','JUL','AUG','SEPT','OCT','NOV','DEC']
 
         return monthArray.splice(0,d.getMonth()+1) 
-        // return ["JAN",'FEB','MAR','APRIL','MAY','JUN','JUL','AUG','SEPT','OCT','NOV','DEC']
       }
     },
     methods:{
               initBigChart(monthNumber) {
-      // this.bigLineChart.allData[monthNumber][date-1]=insulinIntake
 
       this.bigLineChart.allData[monthNumber]=(new Array(31)).fill(0)
       this.records.forEach((record)=>{
@@ -215,14 +230,10 @@ export default {
                     date:record.date,
                     insulin:record.insulin})
 
-        //             if(monthNumber==parseInt(record.month))
         this.bigLineChart.allData[ parseInt(record.month)-1 ][parseInt(record.date)-1]+=parseInt(record.insulin)
-        // if(monthNumber==parseInt(record.month))
-        // this.bigLineChart.allData[ monthNumber-1 ][parseInt(record.date)-1]=parseInt(record.insulin)
 
 
       })
-              // this.bigLineChart.allData[9][9]=15
               
 
 
@@ -243,7 +254,6 @@ export default {
             pointRadius: 4,
             data: this.bigLineChart.allData[monthNumber]
           }],
-          // labels: ['1', '2', '3', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'],
           labels:this.dates(monthNumber)
         }
         this.$refs.bigChart.updateGradients(chartData);
@@ -258,7 +268,46 @@ export default {
         else 
         return ['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30']
 
-      }
+      },
+      viewFor(items){
+
+        console.log(items)
+
+        this.purpleLineChart.chartData.labels.length=0
+        this.purpleLineChart.chartData.datasets[0].data.length=0
+
+        this.records.forEach((recd)=>{
+          if(items.localeCompare(recd.category)==0){
+            
+            console.log(recd.category,recd.bloodGlucoseLevel,recd.date+"/"+recd.month)
+            this.purpleLineChart.chartData.labels.push(recd.date+"/"+recd.month)
+            this.purpleLineChart.chartData.datasets[0].data.push(recd.bloodGlucoseLevel)
+
+          }
+        })
+
+            console.log(this.purpleLineChart.chartData.labels)
+            console.log(this.purpleLineChart.chartData.datasets[0].data)
+            console.log(this.purpleLineChart.chartData)
+            this.chartFor=items
+            this.$refs.sChart.renderChart(this.purpleLineChart.chartData,this.purpleLineChart.extraOptions)
+          
+        },
+        orginalGraph(){
+          const showDataFor=()=>{
+            if(this.$records.length>15)
+            return 15
+            else
+            return this.$records.length
+          }
+          console.log(showDataFor())
+          for(let i=0;i<showDataFor();i++){
+            this.purpleLineChart.chartData.labels.push(this.$records[i].category.toString())
+            this.purpleLineChart.chartData.datasets[0].data.push(this.$records[i].bloodGlucoseLevel)
+            this.chartFor='For Last 15 Logged'
+            this.$refs.sChart.renderChart(this.purpleLineChart.chartData,this.purpleLineChart.extraOptions)
+          }
+        }
     },
     mounted(){
         this.i18n = this.$i18n;
@@ -278,5 +327,13 @@ export default {
 </script>
 
 <style>
-
+.abcd{
+  position: relative;
+  right: 15px !important;
+  padding-left: 65vw;
+  width: 100%;
+  height: 50px;
+  /* border: 3px solid green; */
+  z-index: 100000 !important;
+}
 </style>
