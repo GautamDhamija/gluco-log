@@ -1,14 +1,15 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import DashboardLayout from '../layout/starter/SampleLayout.vue';
-import Starter from '../layout/starter/SamplePage.vue';
-import addRecord from '../layout/addRecord.vue';
-import viewRecord from "../layout/viewRecord.vue";
-import calculator from "../layout/calculator.vue";
-import graphs from "../layout/graphs.vue";
+// import Starter from '../layout/starter/SamplePage.vue';
+const Starter = ()=>import ("@/layout/starter/SamplePage.vue")
+const addRecord = ()=>import ("@/layout/addRecord.vue")
+const viewRecord = ()=>import ("@/layout/viewRecord.vue")
+const calculator = ()=>import ("@/layout/calculator.vue")
+const graphs = ()=>import ("@/layout/graphs.vue")
 import signup from "../layout/authentication/signup.vue"
 import login from "../layout/authentication/login.vue"
-import editRecord from "../layout/editRecord.vue"
+const editRecord = ()=> import( "@/layout/editRecord.vue")
 
 Vue.use(Router);
 
