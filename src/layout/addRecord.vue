@@ -82,7 +82,7 @@ export default {
             bloodGlucoseLevel:null,
             carbs:null,
             insulinType:null,
-            insulin:null,
+            insulin:0,
             extraMedication:null,
             notes:null,
             timestamp:Date.now(),

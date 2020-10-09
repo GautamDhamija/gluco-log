@@ -12,9 +12,9 @@
         </div>
   </div>
   <blockquote class="blockquote mb-0">
-    <p>Blood Glucose Level : {{record.bloodGlucoseLevel}}<br>
-    Carbs: {{record.carbs}}<br>
-    Insulin:{{record.insulin}}</p>
+    <p><span>Blood Glucose Level : {{record.bloodGlucoseLevel}}</span><br>
+    <span v-if="record.carbs!=null">Carbs: {{record.carbs}}<br></span>
+    <span v-if="record.insulin!=0">Insulin:{{record.insulin}}</span></p>
 
     <footer class="blockquote-footer"> <cite title="Source Title">{{record.notes}}</cite></footer>
     <div class="d-flex flex-row-reverse">

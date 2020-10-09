@@ -326,7 +326,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .abcd{
   position: relative;
   right: 15px !important;
@@ -334,6 +334,6 @@ export default {
   width: 100%;
   height: 50px;
   /* border: 3px solid green; */
-  z-index: 100000 !important;
+  /* z-index: 100000 !important; */
 }
 </style>
